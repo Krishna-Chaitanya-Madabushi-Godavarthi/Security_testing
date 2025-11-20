@@ -1,4 +1,4 @@
-// ❌ Hardcoded secret (CodeQL: hardcoded credentials)
+// ❌ Hardcoded secrets (CodeQL: hardcoded credentials)
 const DB_PASSWORD = "SuperSecret123!"; 
 
 const http = require("http");
@@ -35,4 +35,11 @@ http.createServer((req, res) => {
             res.end(JSON.stringify({
                 sql_result: result,
                 file_content: data || "",
-                cmd_output: stdout ||_
+                cmd_output: stdout || err?.message
+            }));
+        });
+    });
+
+}).listen(8080, () => {
+    console.log("Vulnerable test server running on port 8080");
+});
